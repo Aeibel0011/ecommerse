@@ -1,0 +1,414 @@
+
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fastkart admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Fastkart admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="/assetss/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/assetss/images/favicon.png" type="image/x-icon">
+    <title>Urban Charms - Product</title>
+
+    <!-- Google font-->
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/font-awesome.css">
+
+    <!-- Linear Icon css -->
+    <link rel="stylesheet" href="/assetss/css/linearicon.css">
+
+    <!-- Themify icon css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/themify.css">
+
+    <!-- Feather icon css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/feather-icon.css">
+
+    <!-- remixicon css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/remixicon.css">
+
+    <!-- Data Table css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/datatables.css">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/animate.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/bootstrap.css">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/style.css">
+    <link rel="stylesheet" type="text/css" href="/stylesheets/products.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <style>
+        tfoot {
+            background-color:  rgb(122, 119, 119);
+            color: black;
+            font-weight: bold;
+        }
+
+        tfoot td {
+            padding: 10px;
+            border-top: 2px solid #ddd;
+        }
+
+        tfoot td:first-child {
+            text-align: left;
+        }
+
+        tfoot td:last-child {
+            text-align: right;
+        }
+
+        
+
+      
+        table {
+            width: 100%;
+            margin: 20px auto;
+            background-color: #ffffff;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        th,
+        td {
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color:#ddd;
+            color: black;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+      
+
+        .button-container {
+            display: flex;
+            justify-content: space-between;
+            width: 100%;
+            margin: 20px auto;
+        }
+        
+        .form-control:hover{
+            background-color: rgb(234, 235, 249);
+        }
+
+        .button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #e74c3c;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            transition-duration: 0.4s;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #c0392b;
+        }
+
+
+
+
+
+.card {
+    margin-bottom: 0; /* Remove margin bottom for cards */
+}
+
+
+        /* Animation class */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <!-- Page Header Start-->
+        <%- include('../partials/header.ejs')%>
+        <!-- Page Header Ends-->
+
+        <!-- Page Body Start-->
+        <div class="page-body-wrapper">
+            <!-- Page Sidebar Start-->
+            <%- include('../partials/sidebar.ejs')%>
+            <!-- Page Sidebar Ends-->
+            <div class="page-body">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card card-table">
+                                <div class="card-body">
+                                    <h4>Sales Report</h4>
+                                    <div class="button-container">
+                                        <div class="button-container">
+                                            <!-- <button class="btn button" style="height: 50px; background-color: #3498db; color: white;" onclick="window.print()">Print</button> -->
+                                            <button id="excel-generator" class="btn button" style="height: 50px; background-color: #27ae60; color: white;">Download Excel</button>
+                                            <button id="pdf-generator" class="btn button" style="height: 50px; background-color: #f39c12; color: white;">Download PDF</button>
+                                            <input type="text" id="searchInput" style="border-color: black;border: 2px solid black; color: black; width: 200px; margin-left: 300px;margin-top: 25px;" class="form-control" onkeyup="searchTable()" placeholder="Search...">
+                                        </div>
+                                        
+                                            <input type="text" id="searchInput"  style="border-color: black;border: 2px solid black; color: black; width: 200px; margin-left: 300px;margin-top: 25px;" class="form-control" onkeyup="searchTable()" placeholder="Search...">
+                                   
+                                    </div>
+
+                                    <!-- Date filter form -->
+                                    <div class="container mt-4">
+                                        <form action="/admin/yearlyreport" method="GET" onsubmit="return validateDates()">
+                                            <div class="row">
+                                                <div class="col-md-6">
+                                                    <label for="startDate">Start Date:</label>
+                                                    <input type="date" id="startDate" name="startDate" class="form-control" >
+                                                    <small id="startDateError" class="text-danger"></small> <!-- Error message placeholder -->
+                                                </div>
+                                                <div class="col-md-6">
+                                                    <label for="endDate">End Date:</label>
+                                                    <input type="date" id="endDate" name="endDate" class="form-control" 
+                                                           max="<?php echo date('Y-m-d'); ?>"> <!-- Maximum allowed date is today -->
+                                                    <small id="endDateError" class="text-danger"></small> <!-- Error message placeholder -->
+                                                </div>
+                                            </div>
+                                            <button type="submit" class="btn btn-primary mt-3">Apply Filter</button>
+                                        </form>
+                                        
+                                        <script>
+                                            function validateDates() {
+                                                const startDate = document.getElementById('startDate').value;
+                                                const endDate = document.getElementById('endDate').value;
+                                                const startDateError = document.getElementById('startDateError');
+                                                const endDateError = document.getElementById('endDateError');
+                                        
+                                                if (startDate > endDate) {
+                                                    startDateError.textContent = 'Start date cannot be after end date';
+                                                    endDateError.textContent = ''; // Clear any existing error message for end date
+                                                    return false; // Prevent form submission
+                                                } else if (endDate > new Date().toISOString().split('T')[0]) { // Check if end date is after today
+                                                    endDateError.textContent = 'End date cannot be a future date';
+                                                    startDateError.textContent = ''; // Clear any existing error message for start date
+                                                    return false; // Prevent form submission
+                                                } else {
+                                                    startDateError.textContent = '';
+                                                    endDateError.textContent = '';
+                                                    return true; // Allow form submission
+                                                }
+                                            }
+                                        </script>
+                                        
+                                    </div>
+
+                                    <table id="salesTable">
+                                        <thead>
+                                            <tr>
+                                                <th>Date</th>
+                                                <th>Order ID</th>
+                                                <th>Product Name</th>
+                                                <th>Price</th>
+                                                <th>Quantity</th>
+                                                <th>Subtotal</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% 
+                                            const today = new Date();
+                                            const startOfYear = new Date(today.getFullYear(), 0, 1); // January 1st of the current year
+                                            const endOfYear = new Date(today.getFullYear() + 1, 0, 0); // December 31st of the current year
+
+                                            let yearlyTotal = 0; // Initialize yearly total
+
+                                            data.forEach((report) => {
+                                                report.products.forEach((product) => {
+                                                    const reportDate = new Date(report.date);
+                                                    if (report.orderStatus !== 'cancelled') { // Check if orderStatus is not 'cancelled'
+                                                        if (reportDate >= startOfYear && reportDate <= endOfYear) {
+                                                            yearlyTotal += product.total; // Accumulate the total for the year
+                                            %>
+                                                            <tr>
+                                                                <td><%= formatDate(report.date) %></td>
+                                                                <td><%= report.orderId %></td>
+                                                                <td><%= product.productId && product.productId.productname ? product.productId.productname : 'N/A' %></td>
+                                                                <td>₹<%= product.salesPrice %> </td>
+                                                                <td><%= product.quantity %></td>
+                                                                <td>₹<%= product.total %></td>
+                                                            </tr>
+                                                            <!-- Add more rows as needed -->
+                                            <% 
+                                                        }
+                                                    }
+                                                });
+                                            });
+                                            %>
+                                        </tbody>
+
+                                        <!-- Table footer for yearly total -->
+                                        <tfoot>
+                                            <tr>
+                                                <td colspan="5" style="text-align: left;">Total:</td>
+                                                <td style="text-align: right;">₹<%= yearlyTotal.toFixed(2) %></td>
+                                            </tr>
+                                        </tfoot>
+
+                                        <% function formatDate(date) {
+                                            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+                                            return new Date(date).toLocaleDateString(undefined, options);
+                                        } %>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Page Body Ends-->
+    </div>
+    <!-- page-wrapper Ends-->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script>
+      $(document).ready(function() {
+        $('#excel-generator').click(function() {
+          console.log('Generating Excel...');
+          $.ajax({
+            url: '/admin/generate-excel', // Update the URL to match your server route
+            method: 'GET',
+            xhrFields: {
+              responseType: 'arraybuffer'
+            },
+            success: function(response) {
+              console.log('Excel generated successfully.');
+    
+              const blob = new Blob([response], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+    
+              const link = document.createElement('a');
+              link.href = window.URL.createObjectURL(blob);
+              link.download = 'sales_report.xlsx';
+    
+              document.body.appendChild(link);
+              link.click();
+    
+              document.body.removeChild(link);
+            },
+            error: function(xhr, status, error) {
+              console.error('Error generating Excel:', error);
+            }
+          });
+        });
+    
+        $('#pdf-generator').click(function() {
+    console.log('Button clicked. Triggering PDF generation...');
+    $.ajax({
+        url: '/admin/generate-pdf', // Update the URL to match your server route
+        method: 'GET',
+        xhrFields: {
+            responseType: 'arraybuffer'
+        },
+        success: function(response) {
+            console.log('PDF generated successfully.');
+            const blob = new Blob([response], { type: 'application/pdf' });
+            const link = document.createElement('a');
+            link.href = window.URL.createObjectURL(blob);
+            link.download = 'sales_report.pdf';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        },
+        error: function(xhr, status, error) {
+            console.error('Error generating PDF:', error);
+        }
+    });
+});
+
+      });
+    </script>
+    
+    <script>
+        // Function to search the table
+        function searchTable() {
+            // Declare variables
+            var input, filter, table, tr, td, i, txtValue;
+            input = document.getElementById("searchInput");
+            filter = input.value.toUpperCase();
+            table = document.getElementById("salesTable");
+            tr = table.getElementsByTagName("tr");
+
+            // Loop through all table rows, and hide those who don't match the search query
+            for (i = 0; i < tr.length; i++) {
+                td = tr[i].getElementsByTagName("td");
+                for (var j = 0; j < td.length; j++) {
+                    if (td[j]) {
+                        txtValue = td[j].textContent || td[j].innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                            break;
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- latest js -->
+    <script src="/assetss/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="/assetss/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js -->
+    <script src="/assetss/js/icons/feather-icon/feather.min.js"></script>
+    <script src="/assetss/js/icons/feather-icon/feather-icon.js"></script>
+
+    <!-- scrollbar simplebar js -->
+    <script src="/assetss/js/scrollbar/simplebar.js"></script>
+    <script src="/assetss/js/scrollbar/custom.js"></script>
+
+    <!-- Sidebar js -->
+    <script src="/assetss/js/config.js"></script>
+
+    <!-- customizer js -->
+    <script src="/assetss/js/customizer.js"></script>
+
+    <!-- Plugins js -->
+    <script src="/assetss/js/sidebar-menu.js"></script>
+    <script src="/assetss/js/notify/bootstrap-notify.min.js"></script>
+    <script src="/assetss/js/notify/index.js"></script>
+
+    <!-- Data table js -->
+    <script src="/assetss/js/jquery.dataTables.js"></script>
+    <script src="/assetss/js/custom-data-table.js"></script>
+
+    <!-- sidebar effect -->
+    <script src="/assetss/js/sidebareffect.js"></script>
+
+    <!-- Theme js -->
+    <script src="/assetss/js/script.js"></script>
+</body>
+
+</html>

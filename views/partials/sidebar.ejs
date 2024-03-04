@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .nested-submenu {
+            display: none;
+            transition: max-height 0.4s ease-out;
+            overflow: hidden;
+            max-height: 0;
+        }
+    
+        .nested-submenu.active {
+            display: block;
+            max-height: 500px; /* Adjust this value according to your content height */
+        }
+    
+        .submenu-toggle i {
+            transition: transform 0.3s;
+            display: inline-block;
+            margin-right: 5px;
+        }
+    
+        .submenu-toggle.active i {
+            transform: rotate(-180deg);
+        }
+    </style>
+    
+</head>
+
+<body>
+    <div class="sidebar-wrapper">
+        <div id="sidebarEffect"></div>
+        <div>
+            <div class="logo-wrapper logo-wrapper-center">
+                <a href="index.html" data-bs-original-title="" title="">
+                  <h3 style="color: white">Urban Charms</h3>
+                    <!-- <img class="img-fluid for-white" src="/assetss/images/logo/full-white.png" alt="logo"> -->
+                </a>
+                <div class="back-btn">
+                    <i class="fa fa-angle-left"></i>
+                </div>
+                <div class="toggle-sidebar">
+                    <i class="ri-apps-line status_toggle middle sidebar-toggle"></i>
+                </div>
+            </div>
+            <div class="logo-icon-wrapper">
+                <a href="index.html">
+                    <h3 style="color: white;">UC</h3>
+                    <!-- <img class="img-fluid main-logo main-white" src="/assetss/images/logo/logo.png" alt="logo"> -->
+                    <img class="img-fluid main-logo main-dark" src="/assetss/images/logo/logo-white.png"
+                        alt="logo">
+                </a>
+            </div>
+            <nav class="sidebar-main">
+                <div class="left-arrow" id="left-arrow">
+                    <i data-feather="arrow-left"></i>
+                </div>
+
+                <div id="sidebar-menu">
+                    <ul class="sidebar-links" id="simple-bar">
+                        <li class="back-btn"></li>
+
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="/admin/home">
+                                <i class="ri-home-line"></i>
+                                <span>Dashboard</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-store-3-line"></i>
+                                <span>Product</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="/admin/products">Prodcts</a>
+                                </li>
+
+                                <li>
+                                    <a href="/admin/addproducts">Add New Products</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-list-check-2"></i>
+                                <span>Category</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="/admin/category">Category List</a>
+                                </li>
+
+                                <li>
+                                    <a href="/admin/addcategory">Add New Category</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-archive-line"></i>
+                                <span>Banner</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="/admin/banner">Banner</a>   
+                                </li>
+                                <li>
+                                    <a href="/admin/addbanner">Add New Banner</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-list-settings-line"></i>
+                                <span>Attributes</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="attributes.html">Attributes</a>
+                                </li>
+
+                                <li>
+                                    <a href="add-new-attributes.html">Add Attributes</a>
+                                </li>
+                            </ul>
+                        </li> -->
+
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-user-3-line"></i>
+                                <span>Users</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="/admin/users">All users</a>
+                                </li>
+                                <!-- <li>
+                                    <a href="/admin/addusers">Add new user</a>
+                                </li> -->
+                            </ul>
+                        </li>
+                            <li class="sidebar-list">
+                                <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                    <i class="ri-price-tag-3-line"></i>
+                                    <span>Coupons</span>
+                                </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="/admin/coupon">Coupon</a>
+                                </li>
+
+                                <li>
+                                    <a href="/admin/addcoupon">Add Coupon</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <!-- <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-user-3-line"></i>
+                                <span>Roles</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="role.html">All roles</a>
+                                </li>
+                                <li>
+                                    <a href="create-role.html">Create Role</a>
+                                </li>
+                            </ul>
+                        </li> -->
+
+                        <!-- <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="media.html">
+                                <i class="ri-price-tag-3-line"></i>
+                                <span>Media</span>
+                            </a>
+                        </li> -->
+
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-archive-line"></i>
+                                <span>Orders</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="/admin/order">Order List</a>   
+                                </li>
+                                <!-- <li>
+                                    <a href="order-detail.html">Order Detail</a>
+                                </li>
+                                <li>
+                                    <a href="order-tracking.html">Order Tracking</a>
+                                </li>      -->
+                            </ul>
+                            <ul class="sidebar-menu">
+                                <li class="sidebar-list">
+                                    <a class="linear-icon-link sidebar-link sidebar-title" href="#">
+                                        <i class="ri-focus-3-line"></i>
+                                        <span>Offer Management</span>
+                                    </a>
+                                    <ul class="sidebar-submenu">
+                                        <li>
+                                            <a href="#" class="submenu-toggle">
+                                                <i class="ri-arrow-down-s-line"></i>
+                                                <span>Product Offer</span>
+                                            </a>
+                                            <ul class="nested-submenu">
+                                                <li><a href="/admin/productOffer">View Product Offers</a></li>
+                                                <li><a href="/admin/addProductOffer">Add Product Offer</a></li>
+                                            </ul>
+                                        </li>
+                                        <li>
+                                            <a href="#" class="submenu-toggle">
+                                                <i class="ri-arrow-down-s-line"></i>
+                                                <span>Category Offer</span>
+                                            </a>
+                                            <ul class="nested-submenu">
+                                                <li><a href="/admin/categoryOffer">View Category Offers</a></li>
+                                                <li><a href="/admin/addCategoryOffer">Add Category Offer</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            
+                            
+                        
+                        <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-file-chart-line"></i>
+                                <span>Sales Report</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                             
+                                <li>
+                                    <a href="/admin/yearlyreport">Sales Report</a>
+                                </li>
+                            </ul>
+                        </li> 
+                        <!-- <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-focus-3-line"></i>
+                                <span>Localization</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="translation.html">Translation</a>
+                                </li>
+
+                                <li>
+                                    <a href="currency-rates.html">Currency Rates</a>
+                                </li>
+                            </ul>
+                        </li> -->
+
+                        <!-- <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-price-tag-3-line"></i>
+                                <span>Coupons</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="coupon-list.html">Coupon List</a>
+                                </li>
+
+                                <li>
+                                    <a href="create-coupon.html">Create Coupon</a>
+                                </li>
+                            </ul>
+                        </li> -->
+
+                        <!-- <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="taxes.html">
+                                <i class="ri-price-tag-3-line"></i>
+                                <span>Tax</span>
+                            </a>
+                        </li> -->
+
+                        <!-- <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="product-review.html">
+                                <i class="ri-star-line"></i>
+                                <span>Product Review</span>
+                            </a>
+                        </li> -->
+
+                        <!-- <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="support-ticket.html">
+                                <i class="ri-phone-line"></i>
+                                <span>Support Ticket</span>
+                            </a>
+                        </li> -->
+
+                        <!-- <li class="sidebar-list">
+                            <a class="linear-icon-link sidebar-link sidebar-title" href="javascript:void(0)">
+                                <i class="ri-settings-line"></i>
+                                <span>Settings</span>
+                            </a>
+                            <ul class="sidebar-submenu">
+                                <li>
+                                    <a href="profile-setting.html">Profile Setting</a>
+                                </li>
+                            </ul>
+                        </li> -->
+
+                        <!-- <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="reports.html">
+                                <i class="ri-file-chart-line"></i>
+                                <span>Reports</span>
+                            </a>
+                        </li> -->
+
+                        <!-- <li class="sidebar-list">
+                            <a class="sidebar-link sidebar-title link-nav" href="list-page.html">
+                                <i class="ri-list-check"></i>
+                                <span>List Page</span>
+                            </a>
+                        </li> -->
+                    </ul>
+                </div>
+
+                <div class="right-arrow" id="right-arrow">
+                    <i data-feather="arrow-right"></i>
+                </div>
+            </nav>
+        </div>
+    </div>
+    <!-- Page Sidebar Ends-->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var submenuToggles = document.querySelectorAll('.submenu-toggle');
+            submenuToggles.forEach(function(toggle) {
+                toggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var submenu = this.nextElementSibling;
+                    this.classList.toggle('active');
+                    submenu.classList.toggle('active');
+                });
+            });
+        });
+    </script>
+    
+</body>
+</html>

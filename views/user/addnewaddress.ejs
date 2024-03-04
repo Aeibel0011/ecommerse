@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+        <title>Urban Charms</title>
+        <meta name="keywords" content="HTML5 Template">
+        <meta name="description" content="Molla - Bootstrap eCommerce Template">
+        <meta name="author" content="p-themes">
+        <!-- Favicon -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/assetsb/images/icons/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/assetsb/images/icons/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/assetsb/images/icons/favicon-16x16.png">
+        <link rel="manifest" href="/assetsb/images/icons/site.html">
+        <link rel="mask-icon" href="/assetsb/images/icons/safari-pinned-tab.svg" color="#666666">
+        <link rel="shortcut icon" href="/assetsb/images/icons/favicon.ico">
+        <meta name="apple-mobile-web-app-title" content="Molla">
+        <meta name="application-name" content="Molla">
+        <meta name="msapplication-TileColor" content="#cc9966">
+        <meta name="msapplication-config" content="/assetsb/images/icons/browserconfig.xml">
+        <meta name="theme-color" content="#ffffff">
+        <!-- Plugins CSS File -->
+        <link rel="stylesheet" href="/assetsb/css/bootstrap.min.css">
+        <!-- Main CSS File -->
+        <link rel="stylesheet" href="/assetsb/css/style.css">
+    
+        <style>
+            body {
+                background-color: #f8f9fa;
+                font-family: 'Arial', sans-serif;
+            }
+    
+            .page-content {
+                padding-top: 80px;
+                padding-bottom: 80px;
+            }
+    
+            .dashboard h2 {
+                color: #007bff; /* Header color */
+                margin-bottom: 20px; /* Add space below the header */
+            }
+    
+            .form-container {
+                max-width: 600px;
+                margin: 0 auto;
+            }
+    
+            .form-control {
+                margin-bottom: 15px;
+            }
+    
+            label {
+                font-weight: bold;
+            }
+    
+            .row {
+                background-color: #ebebeb;
+                padding: 21px;
+            }
+    
+            button {
+                display: inline-block;
+                background-color: #007bff;
+                color: #fff;
+                border: none;
+                padding: 10px 20px;
+                border-radius: 5px;
+                cursor: pointer;
+            }
+                 /* Add your existing styles here */
+                 .error {
+                color: #dc3545; /* Red color for the text */
+            }
+    
+            .error {
+                color: #dc3545; /* Red color for error messages */
+            }
+        
+        </style>
+    
+        <!-- Responsive Styles -->
+        <style>
+            @media (max-width: 768px) {
+                .form-container {
+                    width: 100%;
+                }
+            }
+        </style>
+    </head>
+<body>
+    <div class="page-content">
+        <div class="dashboard">
+            <div class="container form-container">
+    <form action="/addaddress" method="post">
+                                                
+        <div class="row">
+            <div class="col-md-6 mb-3">
+                <label>First Name *</label>
+                <input type="text" class="form-control" name="firstName" required >
+            </div><!-- End .col-md-6 -->
+
+            <div class="col-md-6 mb-3">
+                <label>Last Name *</label>
+                <input type="text" class="form-control" name="lastName" required >
+            </div><!-- End .col-md-6 -->
+
+            <div class="col-12 mb-3">
+                 <label>Address *</label>
+                <textarea class="form-control" name="address" rows="4" required></textarea>
+            </div><!-- End .col-12 -->
+
+            <div class="col-12 mb-3">
+                <label>Phone Number *</label>
+                <input type="tel" class="form-control" name="phoneNumber" required >
+            </div><!-- End .col-12 -->
+
+            <div class="col-md-6 mb-3">
+                <label>Pincode *</label>
+                <input type="text" class="form-control" name="pincode" required >
+            </div><!-- End .col-md-6 -->
+
+            <div class="col-md-6 mb-3">
+                <label>City/District *</label>
+                <input type="text" class="form-control" name="city" required >
+            </div><!-- End .col-md-6 -->
+
+            <div class="col-12 mb-3">
+                <label>State *</label>
+                <input type="text" class="form-control" name="state" required>
+            </div><!-- End .col-12 -->
+
+            <div class="col-12 mb-3">
+                <button type="submit" class="btn btn-outline-primary-2">
+                    <span>Save</span>
+                    <i class="icon-long-arrow-right"></i>
+                </button>
+            </div><!-- End .col-12 -->
+        </div><!-- .End .row -->
+    </form>
+</div><!-- .End .form-container -->
+</div>
+</div>
+</body>
+</html>

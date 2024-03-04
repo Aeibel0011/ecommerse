@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+
+<!-- Mirrored from themes.pixelstrap.com/fastkart/back-end/all-users.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 04 Sep 2023 05:49:38 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Fastkart admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords"
+        content="admin template, Fastkart admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="/assetss/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/assetss/images/favicon.png" type="image/x-icon">
+    <title>Urban Charms - All User</title>
+    <!-- Google font-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/font-awesome.css">
+
+    <!-- Linear Icon css -->
+    <link rel="stylesheet" href="/assetss/css/linearicon.css">
+
+    <!-- remixicon css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/remixicon.css">
+
+    <!-- Data Table css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/datatables.css">
+
+    <!-- Themify icon css-->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/themify.css">
+
+    <!-- Feather icon css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/feather-icon.css">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/animate.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/bootstrap.css">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/style.css">
+    <style>
+        /* Modified CSS styles for black and white combo and circular design */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    
+        .pagination a {
+    color: black;
+    background-color: white;
+    border: 1px solid black; /* Set the border color to black */
+    border-radius: 40%; /* Make it circular */
+    text-align: center;
+    width: 30px; /* Set a fixed width for circular shape */
+    height: 30px; /* Set a fixed height for circular shape */
+    line-height: 30px; /* Center text vertically */
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    display: inline-block;
+    margin: 0 5px;
+    font-weight: bold; /* Ensure visibility of text */
+}
+
+    
+        .pagination a.active {
+            background-color: black;
+            color: white;
+            border-color: #000;
+        }
+        /* Styles for Prev and Next buttons */
+    .pagination a.prev,
+    .pagination a.next {
+        background-color: white;
+        color: black;
+        border-color:black;
+        border-radius: 30%; /* Make it circular */
+        width: 50px; /* Set a fixed width for circular shape */
+            height: 30px; /* Set a fixed height for circular shape */
+    }
+
+    .pagination a.prev:hover,
+    .pagination a.next:hover {
+        background-color: black;
+        color: #fff;
+        border-color:black;
+    }
+    </style>
+    
+    
+
+</head>
+
+<body>
+    <!-- tap on top start -->
+    <div class="tap-top">
+        <span class="lnr lnr-chevron-up"></span>
+    </div>
+    <!-- tap on tap end -->
+
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <!-- Page Header Start-->
+        <%- include('../partials/header.ejs')%>
+        <!-- Page Header Ends-->
+
+        <!-- Page Body Start -->
+        <div class="page-body-wrapper">
+            <!-- sidebar start -->
+            <%- include('../partials/sidebar.ejs')%>
+            <!-- Page Sidebar Ends-->
+            <!-- Container-fluid starts-->
+            <div class="page-body">
+                <!-- All User Table Start -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card card-table">
+                                <div class="card-body">
+                                    <div class="title-header option-title">
+                                        <h5>All Orders</h5>
+                                        <!-- <form class="d-inline-flex">
+                                            <a href="/admin/order" class="align-items-center btn btn-theme d-flex">
+                                                <i data-feather="plus"></i>
+                                            </a>
+                                        </form> -->
+                                    </div>
+
+                                    <div class="table-responsive table-product">
+                                        <table class="table all-package theme-table" id="table_id">
+                                            <thead>
+                                                <tr>
+                                                    <th> Order Id</th>
+                                                    <th>Full Name</th>
+                                                 
+                                                    <th>Total</th>
+                                                    <th>Status</th>
+                                                    <th>Date</th>
+                                                    
+                                                    <th></th>
+                                                </tr>
+                                            </thead>
+                                        
+                                            <tbody>
+
+                                            
+                                                    <% data.slice().reverse().forEach((datas) => { %>
+                                                        <% datas.products.slice().reverse().forEach((product) => { %>
+                                                <tr>
+                                                    <td><%= datas.orderId %></td>
+                                                    <td><%= datas.address.firstName %> <%= datas.address.lastName %></td>
+                                                  
+                                                    <td>₹<%= product.total + 120 %></td>
+                                                    <td><%= product.Status %></td>
+                                                    <td><%= datas.date.toLocaleDateString() %></td>
+                                                    <td>
+                                                        <a id="viewDetailsLink" href="/admin/orderdetails/<%= datas.orderId %>?productid=<%= product.productId._id %>" class="btn btn-info btn-sm">View Details</a>
+                                                      </td>
+                                                </tr>
+                                                <% }) %>
+                                                <% }) %>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <script>
+                    // Assuming product.Status holds the status value
+                    if (product.Status === 'cancelled') {
+                      // Disable the link
+                      document.getElementById('viewDetailsLink').setAttribute('disabled', 'disabled');
+                      // Optionally, change its appearance to indicate it's disabled
+                      document.getElementById('viewDetailsLink').classList.add('disabled');
+                    }
+                  </script>
+                <!-- All User Table Ends-->
+                            <!-- Pagination -->
+    <div class="pagination">
+        <% if (currentPage > 1) { %>
+            <a href="?page=<%= currentPage - 1 %>" class="prev">Prev</a>
+        <% } %>
+        <% for (let i = 1; i <= totalPages; i++) { %>
+            <a href="?page=<%= i %>" class="<%= i === currentPage ? 'active' : '' %>"><%= i %></a>
+        <% } %>
+        <% if (currentPage < totalPages) { %>
+            <a href="?page=<%= currentPage + 1 %>" class="next">Next</a>
+        <% } %>
+    </div>
+                <div class="container-fluid">
+                    <!-- footer start-->
+                    <footer class="footer">
+                        <div class="row">
+                            <div class="col-md-12 footer-copyright text-center">
+                                <p class="mb-0">Copyright 2022 © Fastkart theme by pixelstrap</p>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- footer end-->
+                </div>
+            </div>
+            <!-- Container-fluid end -->
+        </div>
+        <!-- Page Body End -->
+
+        <!-- Modal Start -->
+        <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1">
+            <div class="modal-dialog  modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-body">
+                        <h5 class="modal-title" id="staticBackdropLabel">Logging Out</h5>
+                        <p>Are you sure you want to log out?</p>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        <div class="button-box">
+                            <button type="button" class="btn btn--no" data-bs-dismiss="modal">No</button>
+                            <button type="button" class="btn  btn--yes btn-primary">Yes</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Modal End -->
+    </div>
+
+    <!-- Delete Modal Box Start -->
+    <div class="modal fade theme-modal remove-coupon" id="exampleModalToggle" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header d-block text-center">
+                    <h5 class="modal-title w-100" id="exampleModalLabel22">Are You Sure ?</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="remove-box">
+                        <p>The permission for the use/group, preview is inherited from the object, object will create a
+                            new permission for this object</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-animation btn-md fw-bold" data-bs-dismiss="modal">No</button>
+                    <button type="button" class="btn btn-animation btn-md fw-bold" data-bs-target="#exampleModalToggle2"
+                        data-bs-toggle="modal" data-bs-dismiss="modal">Yes</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade theme-modal remove-coupon" id="exampleModalToggle2" aria-hidden="true" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title text-center" id="exampleModalLabel12">Done!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="remove-box text-center">
+                        <div class="wrapper">
+                            <svg class="checkmark" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
+                                <circle class="checkmark__circle" cx="26" cy="26" r="25" fill="none" />
+                                <path class="checkmark__check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+                            </svg>
+                        </div>
+                        <h4 class="text-content">It's Removed.</h4>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Delete Modal Box End -->
+
+    <!-- latest js -->
+    <!-- latest js -->
+    <script src="/assetss/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="/assetss/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js -->
+    <script src="/assetss/js/icons/feather-icon/feather.min.js"></script>
+    <script src="/assetss/js/icons/feather-icon/feather-icon.js"></script>
+
+    <!-- scrollbar simplebar js -->
+    <script src="/assetss/js/scrollbar/simplebar.js"></script>
+    <script src="/assetss/js/scrollbar/custom.js"></script>
+
+    <!-- customizer js -->
+    <script src="/assetss/js/customizer.js"></script>
+
+    <!-- Sidebar js -->
+    <script src="/assetss/js/config.js"></script>
+
+    <!-- Plugins JS -->
+    <script src="/assetss/js/sidebar-menu.js"></script>
+    <script src="/assetss/js/notify/bootstrap-notify.min.js"></script>
+    <script src="/assetss/js/notify/index.js"></script>
+
+    <!-- Data table js -->
+    <script src="/assetss/js/jquery.dataTables.js"></script>
+    <script src="/assetss/js/custom-data-table.js"></script>
+
+    <!-- all checkbox select js -->
+    <script src="/assetss/js/checkbox-all-check.js"></script>
+
+    <!-- sidebar effect -->
+    <script src="/assetss/js/sidebareffect.js"></script>
+
+    <!-- Theme js -->
+    <script src="/assetss/js/script.js"></script>
+</body>
+
+
+<!-- Mirrored from themes.pixelstrap.com/fastkart/back-end/all-users.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 04 Sep 2023 05:49:39 GMT -->
+</html>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    async function blockUser(userId) {
+        // Create a Swal confirmation popup
+        const confirmation = await Swal.fire({
+            title: 'Are you sure?',
+            text: 'This action will block the user!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Yes, block it!'
+        });
+
+        // Check if the user confirmed
+        if (confirmation.isConfirmed) {
+            try {
+                const response = await fetch(`/admin/blockUser/${userId}`, {
+                    method: 'post',
+                });
+
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+
+                const result = await response.json();
+                console.log(result);
+
+                window.location.reload();
+            } catch (error) {
+                console.error('Fetch error:', error);
+            }
+        }
+    }
+
+
+
+  async  function fetchDetails(orderId) {
+  // Make a fetch request with the orderId
+
+  fetch(`/viewdetails/${orderId}`, {
+    method: 'GET', // or 'POST' or any other method
+    headers: {
+      'Content-Type': 'application/json'
+      // Add any other headers needed
+    }
+    // You can add a body if it's a POST request
+  })
+  .then(response => {
+    // Handle the response as needed
+  })
+  .catch(error => {
+    // Handle errors
+    console.error('Error:', error);
+  });
+}
+
+</script>

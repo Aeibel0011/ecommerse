@@ -1,0 +1,79 @@
+<!-- views/user/invoice.ejs -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invoice</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .invoice-header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .invoice-details {
+            margin-bottom: 20px;
+        }
+        .product-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 20px;
+        }
+        .product-table th, .product-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+        .total-section {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="invoice-header">
+        <h1>Invoice</h1>
+    </div>
+    
+    <div class="invoice-details">
+        <p><strong>Order ID:</strong> <%= order._id %></p>
+        <p><strong>Customer:</strong> <%= order.userId %></p>
+    </div>
+
+    <table class="product-table">
+        <thead>
+            <tr>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Sales Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% order.products.forEach(product => { %>
+                <tr>
+                    <td><%= product.productId.name %></td>
+                    <td><%= product.quantity %></td>
+                    <td>$<%= product.salesPrice %></td>
+                    <td>$<%= product.total %></td>
+                </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+    <div class="total-section">
+        <p><strong>Total Amount:</strong> $<%= order.totalAmount %></p>
+    </div>
+
+    <!-- Add more details as needed -->
+ <!-- Add Download PDF button -->
+ <div>
+    <a href="/invoice/<%= order._id %>/download" download="invoice.pdf">
+        <button type="button">Download</button>
+    </a>
+</div>
+</body>
+</html>

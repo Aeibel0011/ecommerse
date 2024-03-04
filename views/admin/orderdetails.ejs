@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+    <style>
+        .gradient-custom {
+            background: #9d0ac6;
+            background: -webkit-linear-gradient(to top left, rgb(132, 17, 174), rgba(246, 243, 255, 1));
+            background: linear-gradient(to top left, rgb(137, 48, 185), rgba(246, 243, 255, 1));
+        }
+
+        .btn-violet {
+            background-color: rgb(233, 231, 234);
+           
+            border: none;
+            padding: 8px 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .btn-violet:hover {
+          
+            background-color:#4ef500;
+            color: white;
+        }
+    </style>
+</head>
+
+<body class="gradient-custom">
+    <section class="h-100 gradient-custom">
+        <div class="container py-5 h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-lg-10 col-xl-8">
+                    <div class="card" style="border-radius: 10px;">
+                        <div class="card-header px-4 py-5">
+                            <h5 class="text-muted mb-0">Order Details </h5>
+                        </div>
+                        <div class="card-body p-4">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <p class="lead fw-normal mb-0" style="color: #4ef500;"></p>
+                                <div class="dropdown">
+                                    <% order.products.forEach(product => { %>
+                                    <button style="background-color: #006013;" class="btn btn-secondary dropdown-toggle" type="button" id="statusDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" <% if (product.Status.includes('cancelled')) { %> disabled <% } %>>
+                                        Change Status
+                                    </button>
+                                    <div  class="dropdown-menu" aria-labelledby="statusDropdown">
+                                        <a class="dropdown-item" href="#" onclick="setStatus('<%= order._id %>','<%= productIdTomatch %>', 'Pending')" <% if (product.Status.includes('cancelled')) { %> disabled <% } %>>Pending</a>
+                                        <a class="dropdown-item" href="#" onclick="setStatus('<%= order._id %>','<%= productIdTomatch %>', 'Shipped')" <% if (product.Status.includes('cancelled')) { %> disabled <% } %>>Shipped</a>
+                                        <a class="dropdown-item" href="#" onclick="setStatus('<%= order._id %>','<%= productIdTomatch %>', 'Delivered')" <% if (product.Status.includes('cancelled')) { %> disabled <% } %>>Delivered</a>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                                        
+                            <script>
+                                function setStatus(orderId,productId,status) {
+                                    Swal.fire({
+                                        title: 'Are you sure?',
+                                        text: `Do you want to update the status of order ${orderId} to ${status}?`,
+                                        icon: 'warning',
+                                        showCancelButton: true,
+                                        confirmButtonColor: '#3085d6',
+                                        cancelButtonColor: '#d33',
+                                        confirmButtonText: 'Yes, update it!'
+                                    }).then((result) => {
+                                        if (result.isConfirmed) {
+                                            document.getElementById('statusDropdown').innerText = status;
+                            
+                                            // Perform fetch request with the selected status and orderId
+                                            fetch('/admin/updatestatus', {
+                                                method: 'POST',
+                                                headers: {
+                                                    'Content-Type': 'application/json'
+                                                },
+                                                body: JSON.stringify({ orderId,productId, status })
+                                            })
+                                            .then(response => {
+                                                if (response.ok) {
+                                                    // console.log(`Order ${orderId} status updated to ${status}`);
+                                                    // Optionally handle success here
+                                                    Swal.fire(
+                                                        'Updated!',
+                                                        `Order ${orderId} status has been updated Successfully.`,
+                                                        'success'
+                                                    );
+                                                } else {
+                                                    console.error('Failed to update status');
+                                                    // Optionally handle failure here
+                                                    Swal.fire(
+                                                        'Error!',
+                                                        'Failed to update status.',
+                                                        'error'
+                                                    );
+                                                }
+                                            })
+                                            .catch(error => {
+                                                console.error('Fetch Error:', error);
+                                                // Handle fetch errors here
+                                                Swal.fire(
+                                                    'Error!',
+                                                    'Failed to update status. Please try again.',
+                                                    'error'
+                                                );
+                                            });
+                                        }
+                                    });
+                                }
+                            </script>
+                            
+                                        <!-- Add this line in the head section to include SweetAlert CDN -->
+                                        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+                            <div class="card shadow-0 border mb-4">
+                                <div class="card-body">
+                                    <div class="row">
+                                       
+                                        <div class="col-md-2">
+                                            <img src="<%= product.productId.productimage[0] %>" class="img-fluid"
+                                                alt="bag">
+                                        </div>
+                                        <div class="col-md-4 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0">Product Name :
+                                                <%= product.productId.productname %></p>
+                                        </div>
+                                        <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0 small">Qty:<%= product.quantity %></p>
+                                        </div>
+                                        <div class="col-md-3 text-center d-flex justify-content-center align-items-center">
+                                            <p class="text-muted mb-0 small">Price : ₹<%= product.productId.price %></p>
+                                        </div>
+                                    </div>
+                                    <hr class="mb-4" style="background-color: #e0e0e0; opacity: 1;">
+                                    <div class="row d-flex align-items-center">
+                                        <div class="col-md-2">
+                                            <p class="text-muted mb-0 small">Track Order</p>
+                                        </div>
+                                        <div class="col-md-10">
+                                            <div class="progress" style="height: 6px; border-radius: 16px;">
+                                                <div class="progress-bar" role="progressbar"
+                                                    style="width: 65%; border-radius: 16px; background-color:#4ef500;"
+                                                    aria-valuenow="65" aria-valuemin="0" aria-valuemax="100"></div>
+                                            </div>
+                                            <div class="d-flex justify-content-around mb-1">
+                                                <p class="text-muted mt-1 mb-0 small ms-xl-5">Out for delivery</p>
+                                                <p class="text-muted mt-1 mb-0 small ms-xl-5">Delivered</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <% }); %>
+
+                            <% order.products.forEach(product => { %>
+                                <div class="d-flex justify-content-between pt-2">
+                                  <p class="fw-bold mb-0">Delivery Address </p>
+                                  <p class="text-muted mb-0"><span class="fw-bold me-4">Total :</span>₹<%= product.salesPrice %></p>
+                                </div>
+                    
+                                <div class="d-flex justify-content-between pt-2">
+                                  <p class="text-muted mb-0">Name: <%= order.address.firstName %> <%= order.address.lastName %></p>
+                                  <p class="text-muted mb-0"><span class="fw-bold me-4">Delivery Charges</span>₹ 100 </p>
+                                </div>
+                    
+                                <div class="d-flex justify-content-between">
+                                  <p class="text-muted mb-0">Phone: <%= order.address.phoneNumber %></p>
+                                  <p class="text-muted mb-0"><span class="fw-bold me-4">Tax :    </span>₹ 20</p>
+                                </div>
+                    
+                                <div class="d-flex justify-content-between mb-5">
+                                  <p class="text-muted mb-0">Location: <%= order.address.city %>, <%= order.address.pincode %>, <%= order.address.state %></p>
+                              
+                                  <p class="text-muted mb-0"><span class="fw-bold me-4">Payment Method:</span><%= order.paymentMethod %></p>
+                                </div>
+                              </div>
+                              <div class="card-footer border-0 px-4 py-5"
+                                style="background-color: #006013; border-bottom-left-radius: 10px; border-bottom-right-radius: 10px;">
+                                  <a href="/admin/order" class="btn btn-violet me-auto"> < Back to Orders</a>
+                                <h5 class="d-flex align-items-center justify-content-end text-white text-uppercase mb-0">Total
+                                  paid: <span class="h2 mb-0 ms-2">₹<%= product.salesPrice   +120 %></span></h5>
+                              </div>
+                            </div>
+                          </div>
+                          <% }); %>
+            </div>
+        </div>
+    </section>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+
+</html>

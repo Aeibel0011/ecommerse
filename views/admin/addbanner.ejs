@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+    <!-- meta data -->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Fastkart admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords" content="admin template, Fastkart admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="/assetss/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/assetss/images/favicon.png" type="image/x-icon">
+    <title>Urban Charms - Add New Banner</title>
+
+    <!-- Google font -->
+    <link href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap" rel="stylesheet">
+
+    <!-- Linear Icon css -->
+    <link rel="stylesheet" href="/assetss/css/linearicon.css">
+
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/font-awesome.css">
+
+    <!-- Themify icon css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/themify.css">
+
+    <!--Dropzon css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/dropzone.css">
+
+    <!-- Feather icon css-->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/feather-icon.css">
+
+    <!-- remixicon css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/remixicon.css">
+
+    <!-- Select2 css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/select2.min.css">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/animate.css">
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/chartist.css">
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/date-picker.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/bootstrap.css">
+
+    <!-- Bootstrap-tag input css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/bootstrap-tagsinput.css">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/style.css">
+    <!-- Custom CSS for the description box -->
+    <style>
+        textarea.form-control {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .alert-message {
+            color: red;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- tap on top start -->
+    <div class="tap-top">
+        <span class="lnr lnr-chevron-up"></span>
+    </div>
+    <!-- tap on tap end -->
+
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <!-- Page Header Start-->
+        <%- include('../partials/header.ejs')%>
+        <!-- Page Header Ends-->
+
+        <!-- Page Body Start -->
+        <div class="page-body-wrapper">
+        <!-- sidebar start -->
+       
+            <%- include('../partials/sidebar.ejs')%>
+            <!-- Page Sidebar Ends-->
+
+            <div class="page-body">
+
+                <!-- New Product Add Start -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="row">
+                                <div class="col-sm-8 m-auto">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <div class="card-header-2">
+                                                <h5>Banner Information</h5>
+                                            </div>
+
+                                            <form class="theme-form theme-form-2 mega-form" action="/admin/addbanner" enctype="multipart/form-data" method="post" onsubmit="return validateForm()">
+                                                <% if (alertMessage) { %>
+                                                <div id="alert" class="alert-message ">
+                                                    <%= alertMessage %>
+                                                </div>
+                                                <script>
+                                                    document.addEventListener('input', function (event) {
+                                                        var alertDiv = document.getElementById('alert');
+                                                        if (alertDiv) {
+                                                            alertDiv.style.display = 'none';
+                                                        }
+                                                    });
+                                                </script>
+                                                <% } %>
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="form-label-title col-sm-3 mb-0">Banner Title</label>
+                                                    <div class="col-sm-9">
+                                                        <input class="form-control" type="text" placeholder="Banner Title" name="Title" id="Title">
+                                                        <p id="Title-error" class="alert-message"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="form-label-title col-sm-3 mb-0">Title 2</label>
+                                                    <div class="col-sm-9">
+                                                        <input class="form-control" type="text" placeholder="Title 2" name="h2" id="Title2">
+                                                        <p id="Position-error" class="alert-message"></p>
+                                                    </div>
+                                                </div>
+                                                <div class="mb-4 row align-items-center">
+                                                    <label class="col-sm-3 col-form-label form-label-title">Banner Image</label>
+                                                    <div class="form-group col-sm-9">
+                                                        <div class="dropzone-wrapper">
+                                                            <div class="dropzone-desc">
+                                                                <i class="ri-upload-2-line"></i>
+                                                                <p>Choose an image file (PNG, JPG, WEBP) or drag it here.</p>
+                                                            </div>
+                                                            <input class="form-control form-choose" type="file" class="dropzone" name="Image" id="Image" accept=".png, .jpg, .webp">
+                                                        </div>
+                                                        <p id="Image-error" class="alert-message"></p>
+                                                        <p id="Image-type-error" class="alert-message"></p>
+                                                    </div>
+                                                </div>
+                                                <!-- New Submit Button -->
+                                                <div class="mb-4 row align-items-center">
+                                                    <div class="col-sm-9 offset-sm-3 d-flex justify-content-center align-items-center">
+                                                        <!-- Center the content -->
+                                                        <button type="submit" class="btn btn-primary">Add Banner</button>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                            
+                                            <script>
+                                                function validateForm() {
+                                                    var title = document.getElementById("Title").value.trim();
+                                                    var title2 = document.getElementById("Title2").value.trim();
+                                                    var image = document.getElementById("Image").value.trim();
+                                                    var errorMessage = "";
+                                            
+                                                    if (title === "") {
+                                                        errorMessage += "Banner Title is required.\n";
+                                                        document.getElementById("Title-error").innerText = "Banner Title is required.";
+                                                    } else {
+                                                        document.getElementById("Title-error").innerText = "";
+                                                    }
+                                            
+                                                    if (title2 === "") {
+                                                        errorMessage += "Title 2 is required.\n";
+                                                        document.getElementById("Position-error").innerText = "Title 2 is required.";
+                                                    } else {
+                                                        document.getElementById("Position-error").innerText = "";
+                                                    }
+                                            
+                                                    var fileInput = document.getElementById('Image');
+                                                    var filePath = fileInput.value;
+                                                    if (filePath === "") {
+                                                        errorMessage += "Banner Image is required.\n";
+                                                        document.getElementById("Image-error").innerText = "Banner Image is required.";
+                                                    } else {
+                                                        document.getElementById("Image-error").innerText = "";
+                                                        var allowedExtensions = /(\.png|\.jpg|\.webp)$/i;
+                                                        if (!allowedExtensions.exec(filePath)) {
+                                                            errorMessage += "Invalid file type. Please upload a PNG, JPG, or WEBP image.\n";
+                                                            document.getElementById("Image-type-error").innerText = "Invalid file type. Please upload a PNG, JPG, or WEBP image.";
+                                                        } else {
+                                                            document.getElementById("Image-type-error").innerText = "";
+                                                        }
+                                                    }
+                                            
+                                                    if (errorMessage !== "") {
+                                                        return false;
+                                                    }
+                                            
+                                                    return true;
+                                                }
+                                            </script>
+                                            
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- New Product Add End -->
+
+                <!-- footer Start -->
+                <div class="container-fluid">
+                    <footer class="footer">
+                        <div class="row">
+                            <div class="col-md-12 footer-copyright text-center">
+                                <p class="mb-0">Copyright 2022 © Fastkart theme by pixelstrap</p>
+                            </div>
+                        </div>
+                    </footer>
+                </div>
+                <!-- footer End -->
+            </div>
+            <!-- Container-fluid End -->
+        </div>
+        <!-- Page Body End -->
+    </div>
+    <!-- page-wrapper End -->
+
+    <!-- Modal Start -->
+    <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog  modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <h5 class="modal-title" id="staticBackdropLabel">Logging Out</h5>
+                    <p>Are you sure you want to log out?</p>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+
+                    <div class="button-box">
+                        <button type="button" class="btn btn--no" data-bs-dismiss="modal">No</button>
+                        <button type="button" class="btn  btn--yes btn-primary">Yes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Modal End -->
+
+    <!-- latest js -->
+    <script src="/assetss/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="/assetss/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js -->
+    <script src="/assetss/js/icons/feather-icon/feather.min.js"></script>
+    <script src="/assetss/js/icons/feather-icon/feather-icon.js"></script>
+
+    <!-- scrollbar simplebar js -->
+    <script src="/assetss/js/scrollbar/simplebar.js"></script>
+    <script src="/assetss/js/scrollbar/custom.js"></script>
+
+    <!-- Sidebar js -->
+    <script src="/assetss/js/config.js"></script>
+
+    <!-- bootstrap tag-input js -->
+    <script src="/assetss/js/bootstrap-tagsinput.min.js"></script>
+    <script src="/assetss/js/sidebar-menu.js"></script>
+
+    <!-- customizer js -->
+    <script src="/assetss/js/customizer.js"></script>
+
+    <!--Dropzon js -->
+    <script src="/assetss/js/dropzone/dropzone.js"></script>
+    <script src="/assetss/js/dropzone/dropzone-script.js"></script>
+
+    <!-- Plugins js -->
+    <script src="/assetss/js/notify/bootstrap-notify.min.js"></script>
+    <script src="/assetss/js/notify/index.js"></script>
+
+    <!-- select2 js -->
+    <script src="/assetss/js/select2.min.js"></script>
+    <script src="/assetss/js/select2-custom.js"></script>
+
+    <!-- sidebar effect -->
+    <script src="/assetss/js/sidebareffect.js"></script>
+
+    <!-- Theme js -->
+    <script src="/assetss/js/script.js"></script>
+
+    <!-- validation js -->
+    <script src="/javascripts/addbanner.js"></script>
+
+</body>
+
+</html>

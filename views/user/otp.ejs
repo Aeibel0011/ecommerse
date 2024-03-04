@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OTP Verification</title>
+    <link rel="stylesheet" href="/stylesheets/otp.css">
+</head>
+
+<body>
+    <div class="container height-100 d-flex justify-content-center align-items-center">
+        <div class="position-relative">
+            <div class="card p-2 text-center">
+                <h6>Please enter the one-time password <br> to verify your account</h6>
+
+                <!-- Single input field for OTP with spacing -->
+                <form action="/otp" method="post">
+                    <% if (alertMessage) { %>
+                        <div id="alert" class="alert-message">
+                          <%= alertMessage %>
+                        </div>
+                        <script>
+                          document.addEventListener('input', function (event) {
+                            var alertDiv = document.getElementById('alert');
+                            if (alertDiv) {
+                              alertDiv.style.display = 'none';
+                            }
+                          });
+                        </script>
+                      <% } %>
+                    <div class="mb-3">
+                        <input class="text-center form-control rounded otp-input" type="text" name="formotp" maxlength="10" pattern="\d{1} \d{1} \d{1} \d{1} \d{1} \d{1}" title="Please enter 6 digits separated by spaces" required />
+                    </div>
+                    <div class="mt-4">
+                        <button class="btn btn-danger px-4 validate" type="submit">Validate</button>
+                    </div>
+                </form>
+
+                <!-- Resend OTP functionality -->
+                <div id="resendOtpSection">
+                    <p id="countdown">Time Remaining: 30s</p>
+                    <button id="resendOtpButton" class="btn btn-primary" style="display: none;">Resend OTP</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Add this script tag after including jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="/javascripts/otp.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var otpInput = document.querySelector('.otp-input');
+
+            otpInput.addEventListener('input', function () {
+                var currentValue = this.value.replace(/\s/g, '');
+                var formattedValue = '';
+
+                for (var i = 0; i < currentValue.length; i++) {
+                    formattedValue += currentValue[i];
+
+                    if (i < currentValue.length - 1) {
+                        formattedValue += ' ';
+                    }
+                }
+
+                this.value = formattedValue;
+            });
+
+            var countdownElement = document.getElementById("countdown");
+            var resendOtpButton = document.getElementById("resendOtpButton");
+            var countdownInterval;
+            var countdownSeconds = 30;
+
+            function startCountdown() {
+                countdownInterval = setInterval(function () {
+                    countdownElement.innerText = "Time left: " + countdownSeconds + "s";
+                    countdownSeconds--;
+
+                    if (countdownSeconds < 0) {
+                        clearInterval(countdownInterval);
+                        countdownElement.innerText = "Time's up!";
+                        resendOtpButton.style.display = "inline-block"; // Show the resend button
+                    }
+                }, 1000);
+            }
+
+            function resetCountdown() {
+                clearInterval(countdownInterval);
+                countdownSeconds = 30;
+                countdownElement.innerText = "Time Remaining: " + countdownSeconds + "s";
+                resendOtpButton.style.display = "none";
+                startCountdown();
+            }
+
+            // Initialize countdown
+            startCountdown();
+
+            // Event listener for Resend OTP button
+            resendOtpButton.addEventListener("click", function () {
+            fetch('/resendotp', {
+                method: 'POST'
+            }).then((res) => {
+                if (res.ok) {
+                    resendOtpButton.style.display = "none";
+                    resetCountdown();
+                } else {
+                    console.error("Resend OTP error");
+                }
+            }).catch((err) => {
+                console.error("Resend OTP error:", err);
+            });
+        });
+    
+        });
+    </script>
+</body>
+
+</html>
+    

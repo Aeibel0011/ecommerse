@@ -1,0 +1,49 @@
+/* otp.css */
+
+/* Center the card */
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+/* Style for the card */
+.card {
+  padding: 20px;
+  text-align: center;
+  max-width: 300px;
+  margin: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Style for the OTP input field */
+.form-control {
+  width: 90%;
+  padding: 9px;
+  font-size: 18px;
+  background-color:#f4f5f9;
+  border-radius: 3px;
+  border: none;
+
+}
+
+/* Style for the Validate button */
+.validate {
+  padding: 10px 20px;
+  margin-top: 20px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+background-color: red;
+}
+.validate:hover{
+  background-color:green;
+}
+/* Add your existing styles */
+
+.otp-input {
+  letter-spacing: 12px; /* Adjust this value to increase or decrease the spacing between digits */
+}

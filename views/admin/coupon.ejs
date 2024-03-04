@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description"
+            content="Fastkart admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+        <meta name="keywords"
+            content="admin template, Fastkart admin template, dashboard template, flat admin template, responsive admin template, web app">
+        <meta name="author" content="pixelstrap">
+        <link rel="icon" href="/assetss/images/favicon.png" type="image/x-icon">
+        <link rel="shortcut icon" href="/assetss/images/favicon.png" type="image/x-icon">
+        <title>Urban Charms - All Category</title>
+        <!-- Google font-->
+        <link
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+            rel="stylesheet">
+    
+        <!-- Fontawesome css -->
+        <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/font-awesome.css">
+    
+        <!-- Linear Icon css -->
+        <link rel="stylesheet" href="/assetss/css/linearicon.css">
+    
+        <!-- remixicon css -->
+        <link rel="stylesheet" type="text/css" href="/assetss/css/remixicon.css">
+    
+        <!-- Data Table css -->
+        <link rel="stylesheet" type="text/css" href="/assetss/css/datatables.css">
+    
+        <!-- Themify icon css-->
+        <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/themify.css">
+    
+        <!-- Feather icon css -->
+        <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/feather-icon.css">
+    
+        <!-- Plugins css -->
+        <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/scrollbar.css">
+        <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/animate.css">
+    
+        <!-- Bootstrap css -->
+        <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/bootstrap.css">
+    
+        <!-- App css -->
+        <link rel="stylesheet" type="text/css" href="/assetss/css/style.css">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+</head>
+<body>
+    <!-- tap on top start -->
+    <div class="tap-top">
+        <span class="lnr lnr-chevron-up"></span>
+    </div>
+    <!-- tap on tap end -->
+
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <!-- Page Header Start-->
+        <%- include('../partials/header.ejs')%>
+        <!-- Page Header Ends-->
+
+        <!-- Page Body Start -->
+        <div class="page-body-wrapper">
+        <!-- sidebar start -->
+       
+            <%- include('../partials/sidebar.ejs')%>
+            <!-- Page Sidebar Ends-->
+
+    <div class="page-body">
+        <!-- Coupons Table Start -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card card-table">
+                        <div class="card-body">
+                            <div class="title-header option-title">
+                                <h5>All Coupons</h5>
+                                <!-- Add New Coupon Button -->
+                                <a href="addcoupon" class="align-items-center btn btn-theme d-flex">
+                                    <i data-feather="plus-square"></i>Add New
+                                </a>
+                            </div>
+
+                            <div class="table-responsive banner-table">
+                                <div>
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Coupon Code</th>
+                                                <th>Description</th>
+                                                <th>Discount Percentage</th>
+                                                <th>Max Discount Amount</th>
+                                                <th>Min Amount</th>
+                                                <!-- <th>Max Amount</th> -->
+                                                <th>Expiry Date</th>
+                                                <th>Actions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <% coupons.forEach(coupon => { %>
+                                            <tr>
+                                                <td><%= coupon.code %></td>
+                                                <td><%= coupon.description %></td>
+                                                <td><%= coupon.discountPercentage %>%</td>
+                                                <td>₹<%= coupon.maxDiscountAmount %></td>
+                                                <td>₹<%= coupon.minAmount %></td>
+                                                <!-- <td><%= coupon.maxAmount %></td> -->
+                                                <td><%= formatDate( coupon.expiryDate ) %></td>
+                                                <td >
+                                                    <!-- Edit Coupon Button -->
+                                                    <% if(coupon.islist){ %>
+                                                        <button style="font-size: small;  width: 60px; height: 34px;" class="btn btn-danger btn-block" onclick="blockCoupon('<%= coupon._id%>')">Unlist</button>
+                                                        <% }else{ %>
+                                                            <button style="font-size: small; width: 60px; height: 34px;" class="btn btn-danger btn-block"  onclick="blockCoupon('<%= coupon._id%>')">List</button>
+                                                            <% } %>
+                                                    <!-- Delete Coupon Button -->
+                                                  
+                                                </td>
+                                                <td class="d-flex justify-content-sm-between" style="margin-top: 10px;">
+                                                    <!-- Edit Coupon Button -->
+                                                    <a href="/admin/editCoupon?id=<%= coupon._id %>" style="margin-right: 10px;">
+                                                        <button class="btn btn-info btn-sm">Edit <i class="icon-edit"></i></button>
+                                                    </a>
+                                                    <!-- Delete Coupon Button -->
+                                                    <button onclick="deleteCoupon('<%= coupon._id %>')" >
+                                                        <i class="fas fa-trash"></i>
+                                                    </button>
+                                                </td>
+                                            </tr>
+                                            <% }); %>
+                                        </tbody>
+                                        
+                                        <% function formatDate(expiryDate) {
+                                            const options = { year: 'numeric', month: 'short', day: 'numeric' };
+                                            return new Date(expiryDate).toLocaleDateString(undefined, options);
+                                        } %>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Coupons Table End -->
+    </div>
+    <!-- Page Body End -->
+
+    <!-- Add your JS scripts here -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        async function deleteCoupon(id) {
+            try {
+                const result = await Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You want to delete this coupon?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes'
+                });
+
+                if (result.isConfirmed) {
+                    const response = await fetch(`/admin/deleteCoupon/${id}`, {
+                        method: 'DELETE'
+                    });
+
+                    if (!response.ok) {
+                        throw new Error('Failed to delete coupon');
+                    }
+
+                    // Reload the page after deleting the coupon
+                    window.location.reload();
+                }
+            } catch (error) {
+                console.error('Error deleting coupon:', error);
+            }
+        }
+    </script>        
+    <script>
+        async function blockCoupon(Id) {
+            try {
+                const result = await Swal.fire({
+                    title: 'Are you sure?',
+                    text: 'You want to do this.',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes !'
+                });
+    
+                if (result.isConfirmed) {
+                    const response = await fetch(`/admin/blockCoupon/${Id}`, {
+                        method: "POST",
+                    });
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+                    const data = await response.json();
+                    console.log(data);
+                    window.location.reload();
+                }
+            } catch (error) {
+                console.error('fetch error', error);
+            }
+        }
+    </script>
+ 
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!-- latest js -->
+<script src="/assetss/js/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap js -->
+<script src="/assetss/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+<!-- feather icon js -->
+<script src="/assetss/js/icons/feather-icon/feather.min.js"></script>
+<script src="/assetss/js/icons/feather-icon/feather-icon.js"></script>
+
+<!-- scrollbar simplebar js -->
+<script src="/assetss/js/scrollbar/simplebar.js"></script>
+<script src="/assetss/js/scrollbar/custom.js"></script>
+
+<!-- customizer js -->
+<script src="/assetss/js/customizer.js"></script>
+
+<!-- Sidebar js -->
+<script src="/assetss/js/config.js"></script>
+
+<!-- Plugins JS -->
+<script src="/assetss/js/sidebar-menu.js"></script>
+<script src="/assetss/js/notify/bootstrap-notify.min.js"></script>
+<script src="/assetss/js/notify/index.js"></script>
+
+<!-- Data table js -->
+<script src="/assetss/js/jquery.dataTables.js"></script>
+<script src="/assetss/js/custom-data-table.js"></script>
+
+<!-- sidebar effect -->
+<script src="/assetss/js/sidebareffect.js"></script>
+
+<!-- Theme js -->
+<script src="/assetss/js/script.js"></script>
+</body>
+</html>

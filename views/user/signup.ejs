@@ -1,0 +1,119 @@
+<!DOCTYPE HTML>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <title>Urban Charms</title>
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="">
+    <meta property="og:url" content="">
+    <meta property="og:image" content="">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assetsb/images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assetsb/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assetsb/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="/assetsb/images/icons/site.html">
+    <link rel="mask-icon" href="/assetsb/images/icons/safari-pinned-tab.svg" color="#666666">
+    <link rel="shortcut icon" href="/assetsb/images/icons/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="Molla">
+    <meta name="application-name" content="Molla">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="/assetsb/images/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Template CSS -->
+    <link href="assets/css/main.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+    <main>
+        <section class="content-main mt-80 mb-80">
+            <div class="card mx-auto card-login">
+                <div class="card-body">
+                    <h4 class="card-title mb-4">Create an Account</h4>
+                    <form id="signupForm" action="/signup" method="post" onsubmit="return validateForm()">
+                        <% if (alertMessage) { %>
+                            <div id="alert" class="alert-message">
+                              <%= alertMessage %>
+                            </div>
+                            <script>
+                              document.addEventListener('input', function (event) {
+                                var alertDiv = document.getElementById('alert');
+                                if (alertDiv) {
+                                  alertDiv.style.display = 'none';
+                                }
+                              });
+                            </script>
+                          <% } %>
+
+                        <div class="mb-3">
+                            <label class="form-label">User Name</label>
+                            <input class="form-control" placeholder="Enter your Name" type="text" name="username" id="username">
+                            <p id="username-error" class="small text-danger"></p>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Email</label>
+                            <input class="form-control" placeholder=" Enter your email" type="email" name="email" id="email">
+                            <p id="email-error" class="small text-danger"></p>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Phone</label>
+                            <input class="form-control" placeholder="Enter your Phone number" type="tel" name="phone" id="phone">
+                            <p id="phone-error" class="small text-danger"></p>
+                        </div>
+                        
+                        
+
+                        <div class="mb-3">
+                            <label class="form-label">Create password</label>
+                            <input class="form-control" placeholder="Password" type="password" id="password">
+                            <p id="password-error" class="small text-danger"></p>
+                        </div>
+
+                        <div class="mb-3">
+                            <label class="form-label">Confirm password</label>
+                            <input class="form-control" placeholder="Confirm Password" type="password" name="password" id="confirm-password">
+                            <p id="confirm-password-error" class="small text-danger"></p>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Referral Code</label>
+                            <input class="form-control" placeholder="Not Mandatory" type="text" name="referralCode" id="referralCode">
+                            <p id="referralCode-error" class="small text-danger"></p>
+                        </div>
+                        <div class="mb-3">
+                            <p class="small text-center text-muted">By signing up, you confirm that you’ve read and accepted our User Notice and Privacy Policy.</p>
+                        </div>
+
+                        <div class="mb-4">
+                            <button type="submit" class="btn btn-primary w-100"> SignUp </button>
+                        </div>
+                    </form>
+
+                    <p class="text-center mb-2">Already have an account? <a href="login">Sign in now</a></p>
+                </div>
+            </div>
+        </section>
+        <footer class="main-footer text-center">
+            <p class="font-xs">
+                <script>
+                    document.write(new Date().getFullYear())
+                </script> ©, Evara - HTML Ecommerce Template .
+            </p>
+            <p class="font-xs mb-30">All rights reserved</p>
+        </footer>
+    </main>
+    <script src="assets/js/vendors/jquery-3.6.0.min.js"></script>
+    <script src="assets/js/vendors/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/vendors/jquery.fullscreen.min.js"></script>
+     <!-- Include your separate JavaScript file -->
+     <script src="/javascripts/signup.js" type="text/javascript"></script>
+    <!-- Main Script -->
+    <script src="assets/js/main.js" type="text/javascript"></script>
+    
+</body>
+
+</html>

@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Urban Charms</title>
+    <meta name="keywords" content="HTML5 Template">
+    <meta name="description" content="Molla - Bootstrap eCommerce Template">
+    <meta name="author" content="p-themes">
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/assetsb/images/icons/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/assetsb/images/icons/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/assetsb/images/icons/favicon-16x16.png">
+    <link rel="manifest" href="/assetsb/images/icons/site.html">
+    <link rel="mask-icon" href="/assetsb/images/icons/safari-pinned-tab.svg" color="#666666">
+    <link rel="shortcut icon" href="/assetsb/images/icons/favicon.ico">
+    <meta name="apple-mobile-web-app-title" content="Molla">
+    <meta name="application-name" content="Molla">
+    <meta name="msapplication-TileColor" content="#cc9966">
+    <meta name="msapplication-config" content="/assetsb/images/icons/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <!-- Plugins CSS File -->
+    <link rel="stylesheet" href="/assetsb/css/bootstrap.min.css">
+    <!-- Main CSS File -->
+    <link rel="stylesheet" href="/assetsb/css/style.css">
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .page-content {
+            padding-top: 80px;
+            padding-bottom: 80px;
+        }
+
+        .dashboard h2 {
+            color: #007bff; /* Header color */
+            margin-bottom: 20px; /* Add space below the header */
+        }
+
+        .form-container {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-control {
+            margin-bottom: 15px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .row {
+            background-color: #ebebeb;
+            padding: 21px;
+        }
+
+        button {
+            display: inline-block;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+             /* Add your existing styles here */
+             .error {
+            color: #dc3545; /* Red color for the text */
+        }
+
+        .error {
+            color: #dc3545; /* Red color for error messages */
+        }
+    
+    </style>
+
+    <!-- Responsive Styles -->
+    <style>
+        @media (max-width: 768px) {
+            .form-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page-content">
+        <div class="dashboard">
+            <div class="container form-container">
+                <form action="/editaddress?id=<%= mainaddress._id %>" method="post" onsubmit="return validateForm()">
+                   
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                            <label>First Name *</label>
+                            <input type="text" class="form-control" name="firstName" id="firstName" oninput="validateField('firstName')" required  value="<%= mainaddress.firstName %>" >
+                            <span id="firstNameError" class="error"></span>
+                        </div><!-- End .col-md-6 -->
+                
+                        <div class="col-md-6 mb-3">
+                            <label>Last Name *</label>
+                            <input type="text" class="form-control" name="lastName" id="lastName" oninput="validateField('lastName')" required  value="<%= mainaddress.lastName %>" >
+                            <span id="lastNameError" class="error"></span>
+                        </div><!-- End .col-md-6 -->
+                
+                        <div class="col-12 mb-3">
+                            <label>Address *</label>
+                            <textarea class="form-control" name="address" id="address" rows="4" oninput="validateField('address')" required><%= mainaddress.address %></textarea>
+                            <span id="addressError" class="error"></span>
+                        </div><!-- End .col-12 -->
+                
+                        <div class="col-12 mb-3">
+                            <label>Phone Number *</label>
+                            <input type="tel" class="form-control" name="phoneNumber" id="phoneNumber" oninput="validateField('phoneNumber')" pattern="[0-9]*" required  value="<%= mainaddress.phoneNumber %>" >
+                            <span id="phoneNumberError" class="error"></span>
+                        </div><!-- End .col-12 -->
+                
+                        <div class="col-md-6 mb-3">
+                            <label>Pincode *</label>
+                            <input type="text" class="form-control" name="pincode" id="pincode" oninput="validateField('pincode')" pattern="[0-9]*" required  value="<%= mainaddress.pincode %>" >
+                            <span id="pincodeError" class="error"></span>
+                        </div><!-- End .col-md-6 -->
+                
+                        <div class="col-md-6 mb-3">
+                            <label>City/District *</label>
+                            <input type="text" class="form-control" name="city" id="city" oninput="validateField('city')" required value="<%= mainaddress.city %>" >
+                            <span id="cityError" class="error"></span>
+                        </div><!-- End .col-md-6 -->
+                
+                        <div class="col-12 mb-3">
+                            <label>State *</label>
+                            <input type="text" class="form-control" name="state" id="state" oninput="validateField('state')" required  value="<%= mainaddress.state %>"
+                            >
+                            <span id="stateError" class="error"></span>
+                        </div><!-- End .col-12 -->
+                        <div id="alert" class="alert-message" style="color: red;"></div>
+                        <div class="col-12 mb-3">
+                            <button type="submit" class="btn btn-outline-primary-2">
+                                <span>Save</span>
+                                <i class="icon-long-arrow-right"></i>
+                            </button>
+                        </div><!-- End .col-12 -->
+                    </div><!-- .End .row -->
+                </form>
+            </div><!-- .End .form-container -->
+        </div>
+    </div>
+    <script>
+
+function validateField(fieldName) {
+        var fieldValue = document.getElementById(fieldName).value;
+        var errorElement = document.getElementById(fieldName + "Error");
+
+        // Reset previous error message
+        errorElement.innerHTML = "";
+
+        // Add specific validation rules for each field
+        switch (fieldName) {
+            case 'firstName':
+                if (fieldValue.trim() === "") {
+                    errorElement.innerHTML = "First Name is required";
+                } else if (/\s/.test(fieldValue)) {
+                    errorElement.innerHTML = "Spaces are not allowed";
+                }
+                break;
+            case 'lastName':
+                if (fieldValue.trim() === "") {
+                    errorElement.innerHTML = "Last Name is required";
+                } else if (/\s/.test(fieldValue)) {
+                    errorElement.innerHTML = "Spaces are not allowed";
+                }
+                break;
+            case 'address':
+                if (fieldValue.trim() === "") {
+                    errorElement.innerHTML = "Address is required";
+                }
+                break;
+            case 'phoneNumber':
+                if (fieldValue.trim() === "") {
+                    errorElement.innerHTML = "Phone Number is required";
+                } else if (!/^\d+$/.test(fieldValue)) {
+                    errorElement.innerHTML = "Phone Number must contain only digits";
+                }
+                break;
+            case 'pincode':
+                if (fieldValue.trim() === "") {
+                    errorElement.innerHTML = "Pincode is required";
+                } else if (!/^\d+$/.test(fieldValue)) {
+                    errorElement.innerHTML = "Pincode must contain only digits";
+                } else if (/\s/.test(fieldValue)) {
+                    errorElement.innerHTML = "Spaces are not allowed";
+                }
+                break;
+            case 'city':
+                if (fieldValue.trim() === "") {
+                    errorElement.innerHTML = "City/District is required";
+                }
+                break;
+            case 'state':
+                if (fieldValue.trim() === "") {
+                    errorElement.innerHTML = "State is required";
+                }
+                break;
+            // Add more cases for other fields if needed
+        }
+    }
+
+    function validateForm() {
+        // Call the validateField function for each field to update error messages
+        validateField('firstName');
+        validateField('lastName');
+        validateField('address');
+        validateField('phoneNumber');
+        validateField('pincode');
+        validateField('city');
+        validateField('state');
+
+        // Check if any error messages exist
+        var errorMessages = document.querySelectorAll('.error');
+        for (var i = 0; i < errorMessages.length; i++) {
+            if (errorMessages[i].innerHTML !== "") {
+                document.getElementById('alert').innerHTML = "Please fix the highlighted errors.";
+                return false; // Prevent form submission if there are errors
+            }
+        }
+
+        // If no errors, allow the form submission
+        document.getElementById('alert').innerHTML = ""; // Clear any previous alert messages
+        return true;
+    }
+    </script>
+    <!-- Plugins JS File -->
+    <script src="/assetsb/js/jquery.min.js"></script>
+    <script src="/assetsb/js/bootstrap.bundle.min.js"></script>
+    <script src="/assetsb/js/jquery.hoverIntent.min.js"></script>
+    <script src="/assetsb/js/jquery.waypoints.min.js"></script>
+    <script src="/assetsb/js/superfish.min.js"></script>
+    <script src="/assetsb/js/owl.carousel.min.js"></script>
+    <!-- Main JS File -->
+    <script src="/assetsb/js/main.js"></script>
+</body>
+
+</html>

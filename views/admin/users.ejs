@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+
+<!-- Mirrored from themes.pixelstrap.com/fastkart/back-end/all-users.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 04 Sep 2023 05:49:38 GMT -->
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description"
+        content="Fastkart admin is super flexible, powerful, clean &amp; modern responsive bootstrap 5 admin template with unlimited possibilities.">
+    <meta name="keywords"
+        content="admin template, Fastkart admin template, dashboard template, flat admin template, responsive admin template, web app">
+    <meta name="author" content="pixelstrap">
+    <link rel="icon" href="/assetss/images/favicon.png" type="image/x-icon">
+    <link rel="shortcut icon" href="/assetss/images/favicon.png" type="image/x-icon">
+    <title>Urban Charms - All User</title>
+    <!-- Google font-->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap"
+        rel="stylesheet">
+
+    <!-- Fontawesome css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/font-awesome.css">
+
+    <!-- Linear Icon css -->
+    <link rel="stylesheet" href="/assetss/css/linearicon.css">
+
+    <!-- remixicon css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/remixicon.css">
+
+    <!-- Data Table css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/datatables.css">
+
+    <!-- Themify icon css-->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/themify.css">
+
+    <!-- Feather icon css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/feather-icon.css">
+
+    <!-- Plugins css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/scrollbar.css">
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/animate.css">
+
+    <!-- Bootstrap css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/vendors/bootstrap.css">
+
+    <!-- App css -->
+    <link rel="stylesheet" type="text/css" href="/assetss/css/style.css">
+    <style>
+        /* Modified CSS styles for black and white combo and circular design */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            padding: 10px;
+            margin-top: 20px;
+        }
+    
+        .pagination a {
+    color: black;
+    background-color: white;
+    border: 1px solid black; /* Set the border color to black */
+    border-radius: 40%; /* Make it circular */
+    text-align: center;
+    width: 30px; /* Set a fixed width for circular shape */
+    height: 30px; /* Set a fixed height for circular shape */
+    line-height: 30px; /* Center text vertically */
+    text-decoration: none;
+    transition: background-color 0.3s, color 0.3s;
+    display: inline-block;
+    margin: 0 5px;
+    font-weight: bold; /* Ensure visibility of text */
+}
+
+    
+        .pagination a.active {
+            background-color: black;
+            color: white;
+            border-color: #000;
+        }
+        /* Styles for Prev and Next buttons */
+    .pagination a.prev,
+    .pagination a.next {
+        background-color: white;
+        color: black;
+        border-color:black;
+        border-radius: 30%; /* Make it circular */
+        width: 50px; /* Set a fixed width for circular shape */
+            height: 30px; /* Set a fixed height for circular shape */
+    }
+
+    .pagination a.prev:hover,
+    .pagination a.next:hover {
+        background-color: black;
+        color: #fff;
+        border-color:black;
+    }
+    </style>
+    
+    
+
+</head>
+
+<body>
+    <!-- tap on top start -->
+    <div class="tap-top">
+        <span class="lnr lnr-chevron-up"></span>
+    </div>
+    <!-- tap on tap end -->
+
+    <!-- page-wrapper Start-->
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+        <!-- Page Header Start-->
+        <%- include('../partials/header.ejs')%>
+        <!-- Page Header Ends-->
+
+        <!-- Page Body Start -->
+        <div class="page-body-wrapper">
+            <!-- sidebar start -->
+            <%- include('../partials/sidebar.ejs')%>
+            <!-- Page Sidebar Ends-->
+
+            <!-- Container-fluid starts-->
+            <div class="page-body">
+                <!-- All User Table Start -->
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="card card-table">
+                                <div class="card-body">
+                                    <div class="title-header option-title">
+                                        <h5>All Users</h5>
+                                        <!-- You can add a link to add a new user if needed -->
+                                        <!-- <form class="d-inline-flex">
+                                            <a href="/admin/adduser" class="align-items-center btn btn-theme d-flex">
+                                                <i data-feather="plus-square"></i>Add New
+                                            </a>
+                                        </form> -->
+                                    </div>
+                                                                    
+                                    <!-- Add this at the top of your EJS template -->
+   
+                                    <div class="table-responsive category-table">
+                                        <div>
+                                            <table class="table table-striped table-hover">
+                                                <thead>
+                                                    <tr>
+                                                        <!-- Adjust the table headers as needed -->
+                                                        <th>Username</th>
+                                                        <th>Email</th>
+                                                        <th>Phone Number</th>
+                                                        <th>Actions</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <% users.forEach((user) => { %>
+                                                        <tr>
+                                                            <td><%= user.username %></td>
+                                                            <td><%= user.email %></td>
+                                                            <td><%= user.phone %></td>
+                                                            <td class="d-flex justify-content-sm-between">
+                                                                <% if(user.islist){ %>
+                                                                    <button class="btn btn-danger btn-block" onclick="blockuser('<%= user._id%>')">Unblock</button>
+                                                                    <% }else{ %>
+                                                                        <button class="btn btn-danger btn-block" onclick="blockuser('<%= user._id%>')">block</button>
+                                                                        <% } %>
+                                                                
+
+                                                                </td>
+                                                            </td>
+                                                        </tr>
+                                                    <% }); %>
+                                                    <!-- Add more user rows here -->
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                                                           <!-- Add this at the top of your EJS template -->
+                                                           <div class="pagination" id="pagination">
+                                                            <% if (currentPage > 1) { %>
+                                                                <a href="/admin/users?page=<%= currentPage - 1 %>" class="prev">Prev</a>
+                                                            <% } %>
+                                                        
+                                                            <% if (currentPage > 3) { %>
+                                                                <a href="/admin/users?page=1">1</a>
+                                                                <% if (currentPage > 4) { %>
+                                                                    <span>...</span>
+                                                                <% } %>
+                                                            <% } %>
+                                                        
+                                                            <% for (let i = Math.max(1, currentPage - 1); i <= Math.min(totalPages, currentPage + 1); i++) { %>
+                                                                <a href="/admin/users?page=<%= i %>" class="<%= currentPage === i ? 'active' : '' %>"><%= i %></a>
+                                                            <% } %>
+                                                        
+                                                            <% if (currentPage < totalPages - 2) { %>
+                                                                <% if (currentPage < totalPages - 3) { %>
+                                                                    <span>...</span>
+                                                                <% } %>
+                                                                
+                                                            <% } %>
+                                                        
+                                                            <% if (currentPage < totalPages) { %>
+                                                                <a href="/admin/users?page=<%= currentPage + 1 %>" class="next">Next</a>
+                                                            <% } %>
+                                                        </div>
+                                                        
+
+                <div class="container-fluid">
+                    <!-- footer start-->
+                    <footer class="footer">
+                        <div class="row">
+                            <div class="col-md-12 footer-copyright text-center">
+                                <p class="mb-0">Copyright 2022 © Fastkart theme by pixelstrap</p>
+                            </div>
+                        </div>
+                    </footer>
+                    <!-- footer end-->
+                </div>
+            </div>
+            <!-- Container-fluid end -->
+        </div>
+        <!-- Page Body End -->
+
+     
+    </div>
+
+    
+    <!-- latest js -->
+    <script src="/assetss/js/jquery-3.6.0.min.js"></script>
+
+    <!-- Bootstrap js -->
+    <script src="/assetss/js/bootstrap/bootstrap.bundle.min.js"></script>
+
+    <!-- feather icon js -->
+    <script src="/assetss/js/icons/feather-icon/feather.min.js"></script>
+    <script src="/assetss/js/icons/feather-icon/feather-icon.js"></script>
+
+    <!-- scrollbar simplebar js -->
+    <script src="/assetss/js/scrollbar/simplebar.js"></script>
+    <script src="/assetss/js/scrollbar/custom.js"></script>
+
+    <!-- customizer js -->
+    <script src="/assetss/js/customizer.js"></script>
+
+    <!-- Sidebar js -->
+    <script src="/assetss/js/config.js"></script>
+
+    <!-- Plugins JS -->
+    <script src="/assetss/js/sidebar-menu.js"></script>
+    <script src="/assetss/js/notify/bootstrap-notify.min.js"></script>
+    <script src="/assetss/js/notify/index.js"></script>
+
+    <!-- Data table js -->
+    <script src="/assetss/js/jquery.dataTables.js"></script>
+    <script src="/assetss/js/custom-data-table.js"></script>
+
+    <!-- all checkbox select js -->
+    <script src="/assetss/js/checkbox-all-check.js"></script>
+
+    <!-- sidebar effect -->
+    <script src="/assetss/js/sidebareffect.js"></script>
+
+    <!-- Theme js -->
+    <script src="/assetss/js/script.js"></script>
+</body>
+
+
+<!-- Mirrored from themes.pixelstrap.com/fastkart/back-end/all-users.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 04 Sep 2023 05:49:39 GMT -->
+</html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+
+
+    // Add the provided script here
+    $('.pagination-inner a').on('click', function() {
+        $(this).siblings().removeClass('pagination-active');
+        $(this).addClass('pagination-active');
+    });
+
+    async function blockuser(userId) {
+    try {
+        // Integrate SweetAlert for confirmation
+        Swal.fire({
+            
+            text: 'Are you sure ?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes !',
+            cancelButtonText: 'Cancel',
+            reverseButtons: true
+        }).then(async (result) => {
+            if (result.isConfirmed) {
+                // Proceed with blocking if confirmed
+                const response = await fetch(`/admin/blockuser/${userId}`, {
+                    method: "post",
+                });
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+                const result = await response.json();
+                console.log(result);
+                
+                // Reload the page after blocking
+                window.location.reload();
+            } else {
+                console.log('Blocking canceled');
+            }
+        });
+    } catch (error) {
+        console.error('Fetch error', error);
+    }
+}
+    </script>
