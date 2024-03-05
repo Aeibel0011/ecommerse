@@ -27,13 +27,13 @@ const getAddbanner = async (req, res) => {
 // Create a new banner
 const createBanner = async (req, res) => {
   try {
-    console.log(req.body);
+ 
     const bannerData = {
       Title: req.body.Title,
       Image: req.file.path.replace(/\\/g, "/").replace("public/", "/"),
       h2: req.body.h2,
     };
-    console.log(bannerData, "//banerdata");
+  
 
     const bannerExist = await Banner.findOne({ title: bannerData.Title });
     if (bannerExist) {
@@ -43,7 +43,7 @@ const createBanner = async (req, res) => {
     }
 
     const banner = await Banner.create(bannerData);
-    console.log(banner, "//baner................");
+  
     res.redirect("banner");
   } catch (error) {
     console.error("Error creating banner:", error);
@@ -86,19 +86,19 @@ const getEditBanner = async (req, res) => {
 const postEditBanner = async (req, res) => {
   try {
     const bannerId = req.query.id;
-    console.log(bannerId, "/////hek");
+
     const banner = await Banner.findOne({ _id: bannerId });
-    console.log(banner, "\\\\\\\\hello");
+   
     if (!banner) {
       return res.status(404).send("Banner not found");
     }
-    console.log(req.body, "////bodudata");
+
     banner.Title = req.body.Title || banner.Title;
     banner.h2 = req.body.h2 || banner.h2;
     banner.Image =
       req.file?.path.replace(/\\/g, "/").replace("public/", "/") ||
       banner.Image;
-    console.log(banner, "\\\\\\\\helloafter");
+
     await banner.save();
     res.redirect("/admin/banner");
   } catch (error) {
@@ -107,7 +107,7 @@ const postEditBanner = async (req, res) => {
   }
 };
 const blockBanner = async (req, res) => {
-  console.log(req.params.Id);
+
   try {
     const bannerId = req.params.Id;
 

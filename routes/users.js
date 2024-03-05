@@ -18,7 +18,7 @@ const couponController = require("../controller/couponController");
 // get home page
 router.get("/", isSession.checksession, user.homeget);
 /* GET login page */
-router.get("/login", user.loginget);
+router.get("/login",isSession.isloged, user.loginget);
 // get  signup page
 router.get("/signup",isSession.isloged, user.signupget);
 // get otp

@@ -147,7 +147,7 @@ const postcheckout = async (req, res) => {
                 
             // Find the number of different products
             const numberOfProducts = new Set(cartProducts.map(item => item.product.toString())).size;
-         console.log(numberOfProducts,'//number')
+        
             // Validate products and update quantities
             for (const cartProduct of cartProducts) {
                 const quantitydecrease = await productmodel.findById(cartProduct.product._id);
@@ -183,9 +183,7 @@ const postcheckout = async (req, res) => {
                     cancelstatus: false,
                     reason: '', // Populate this based on certain conditions
                 };
-                console.log(productData.quantity,'qyantuty')
-                console.log(productData.salesPrice,'/pricehai')
-                console.log(usercart.discountAmount,'nothinf')
+                
                 orders.products.push(productData);
                 orders.totalAmount += productData.total;
             };
@@ -231,7 +229,7 @@ const postcheckout = async (req, res) => {
             const cartProducts = selectedProducts.products.filter(item => item.isSelected === true);
             //number of products
             const numberOfProducts = new Set(cartProducts.map(item => item.product.toString())).size;
-            console.log(numberOfProducts,'//number')
+           
             // Calculate total order amount
             const totalOrderAmount = cartProducts.reduce((total, cartProduct) => {
                 return total + (cartProduct.isSelected ? cartProduct.product.price * cartProduct.quantity : 0);
@@ -239,10 +237,9 @@ const postcheckout = async (req, res) => {
         
             // Check if the user has sufficient balance in the wallet
             const wallet = await Wallet.findOne({ user: userId });
-            console.log(wallet)
+           
             if (!wallet || wallet.balance < totalOrderAmount) {
-                    console.log('error')
-                    console.log("//////")
+                   
             return res.status(200).json({ message: 'Insufficient balance in wallet' });
             }
         
@@ -277,9 +274,7 @@ const postcheckout = async (req, res) => {
                     cancelstatus: false,
                     reason: '', // Populate this based on certain conditions
                 };
-                console.log(productData.quantity,'qyantuty')
-                console.log(productData.salesPrice,'/pricehai')
-                console.log(usercart.discountAmount,'nothinf')
+              
                 orders.products.push(productData);
                
             };
@@ -341,7 +336,7 @@ const postcheckout = async (req, res) => {
             const cartProducts = selectedProducts.products.filter(item => item.isSelected === true);
              //number of products
               const numberOfProducts = new Set(cartProducts.map(item => item.product.toString())).size;
-                  console.log(numberOfProducts,'//number')
+                 
                  // Validate products and update quantities
             for (const cartProduct of cartProducts) {
                 const quantitydecrease = await productmodel.findById(cartProduct.product._id);
@@ -387,9 +382,7 @@ const postcheckout = async (req, res) => {
                     cancelstatus: false,
                     reason: '', // Populate this based on certain conditions
                 };
-                console.log(productData.quantity,'qyantuty')
-                console.log(productData.salesPrice,'/pricehai')
-                console.log(usercart.discountAmount,'nothinf')
+
                 orders.products.push(productData);
                 orders.totalAmount += productData.total;
                
@@ -705,7 +698,7 @@ const applyCoupon = async (req, res) => {
 userCart.totalAmount = roundedTotalAmount;
 userCart.couponApplied = true;
 userCart.coupon=couponCode;
-        console.log(userCart.totalAmount,'///////heil')
+       
         await userCart.save();
 
         // Increment the usage count of the coupon

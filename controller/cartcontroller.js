@@ -19,7 +19,7 @@ app.use(session({
  
 const postcart = async (req, res) => {
     // Check if user details are present in the session
-    console.log('hello')
+
     if (!req.session.userdetails || !req.session.userdetails._id) {
         // Redirect to the login page
         return res.status(401).send({ redirectToLogin: true });
@@ -48,7 +48,7 @@ const postcart = async (req, res) => {
         const existingProduct = userCart.products.find(
             (product) => product.product.toString() === productId
         );
-        console.log(existingProduct,'////cdhubdjkhcxhjgjsx ')
+       
 
         if (existingProduct) {
             // If the product exists, update its quantity

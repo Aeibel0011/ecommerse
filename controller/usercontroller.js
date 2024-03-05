@@ -194,7 +194,9 @@ const postotp = async (req, res) => {
 
     if (formotp == req.session.otp.code) {
       const userdata = await model.create(req.session.userdetails);
-   
+     // Remove userdetails from the session
+     delete req.session.userdetails;
+
 
       // Create wallet for the user
       const newWallet = await Wallet.create({
